@@ -1,10 +1,16 @@
+import Navbar from '../../features/nav/Navbar';
+import NewsDashboard from '../../features/news/newsDashboard/NewsDashboard';
 import './styles.css';
+import { Container } from 'semantic-ui-react';
 
 function App() {
   return (
-    <div className="App">
-      <h1>NewsToday</h1>
-    </div>
+    <>
+        <Navbar />
+        <Container className='main'>
+          <NewsDashboard />
+        </Container>
+    </>    
   );
 }
 
