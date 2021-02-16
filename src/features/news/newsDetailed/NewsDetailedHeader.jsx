@@ -1,37 +1,30 @@
 import React from 'react';
 import { Header, Image, Item, Segment } from 'semantic-ui-react';
 
-const newsImageStyle = {
-    filter: 'brightness(30%)'
-};
-
-const newsImageTextStyle = {
-    position: 'absolute',
-    bottom: '5%',
-    left: '5%',
-    width: '100%',
-    height: 'auto',
-    color: 'white'
-};
-
-export default function NewsDetailedHeader(){
+export default function NewsDetailedHeader({nd}){
+    //times conversion
+    var d = new Date(nd.publishTimeUnix);
+    var dcon = d.getDate() + '/' + (d.getMonth()) + '/' + d.getFullYear() + " " + d.getHours() + ':' + d.getMinutes();
+    //console.log(dcon)
+    var t = "https://obs.line-scdn.net/".concat(nd.thumbnail.hash)
+    //console.log({newsdata})
     return(
         <Segment.Group>
             <Segment basic attached="top" style={{padding: '0'}}>
-                <Image src={`/assets/categoryImages/drinks.jpg`} fluid style={newsImageStyle} />
+                <Image src={t} fluid />
 
-                <Segment basic style={newsImageTextStyle} >
+                <Segment basic  >
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
                                     size="huge"
-                                    content='Event Title'
-                                    style={{color: 'white'}}
+                                    content={nd.title} 
+                                    style={{marginBottom: '0.5em'}}                                  
                                 />
-                                <p>Event Date</p>
+                                <p>{dcon}</p>
                                 <p>
-                                    Hosted by <strong>Bob</strong>
+                                    Published by <strong>{nd.publisher}</strong>
                                 </p>
                             </Item.Content>
                         </Item>

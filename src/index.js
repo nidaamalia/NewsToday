@@ -5,14 +5,20 @@ import './app/layout/styles.css';
 import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { configureStore } from './app/store/configureStore';
+import { Provider } from 'react-redux';
+
+const store = configureStore()
 
 const rootEl = document.getElementById('root');
 
 function render(){
   ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>, 
+    <Provider store={store}>
+      <BrowserRouter >
+        <App />
+      </BrowserRouter>
+    </Provider>, 
     rootEl)
 }
 
